@@ -30,11 +30,11 @@ jobs:
 
       - name: Deploy to Vercel
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCELMUSIC: ${{ secrets.VERCELMUSIC }}
         run: |
-          if [ -z "$VERCEL_TOKEN" ]; then
-            echo "VERCEL_TOKEN is not set. Please store it in repo secrets (Repository Settings -> Secrets)." && exit 1
+          if [ -z "$VERCELMUSIC" ]; then
+            echo "VERCELMUSIC is not set. Please store it in repo secrets (Repository Settings -> Secrets)." && exit 1
           fi
           # `vercel` will use the linked project by verifying the current GitHub repo.
           # If project/org id or scope are needed, you can add these as secrets and pass `--scope` or `--org`.
-          vercel --prod --confirm --token "$VERCEL_TOKEN"
+          vercel --prod --yes --token "$VERCELMUSIC"
