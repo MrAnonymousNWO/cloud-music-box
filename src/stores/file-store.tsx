@@ -993,7 +993,7 @@ export const FileStoreProvider = ({
                 if (albumItem.cover === undefined) {
                   const cover = mm.selectCover(metadata.common.picture)
                   if (cover) {
-                    albumItem.cover = new Blob([cover.data], {
+                    albumItem.cover = new Blob([new Uint8Array(cover.data as any)], {
                       type: cover.format,
                     })
                   }
