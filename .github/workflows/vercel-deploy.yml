@@ -28,6 +28,10 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
+      - name: Verify Vercel token
+        run: |
+          vercel whoami --token "$VERCELMUSIC" || (echo "VERCELMUSIC token invalid" && exit 1)
+
       - name: Deploy to Vercel
         env:
           VERCELMUSIC: ${{ secrets.VERCELMUSIC }}
