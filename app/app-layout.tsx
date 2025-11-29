@@ -87,7 +87,7 @@ const ThemeChanger = () => {
     )
 
     if (cover) {
-      const blob = new Blob([cover.data], { type: cover.format })
+      const blob = new Blob([new Uint8Array(cover.data as any)], { type: cover.format })
       themeStoreActions.applyThemeFromImage(blob)
     } else {
       themeStoreActions.resetSourceColor()

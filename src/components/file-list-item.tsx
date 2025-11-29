@@ -196,7 +196,7 @@ export const FileListItemAudioTrack = React.memo(
           const cover = mm.selectCover(updatedFile.metadata?.common.picture)
           if (cover) {
             const url = URL.createObjectURL(
-              new Blob([cover.data], { type: cover.format })
+              new Blob([new Uint8Array(cover.data as any)], { type: cover.format })
             )
             newFileState.coverUrl = url
           }
