@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      VERCELMUSIC: ${{ secrets.VERCELMUSIC }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,11 +32,13 @@ jobs:
 
       - name: Verify Vercel token
         run: |
+          # fail early if the token is not set or invalid
+          if [ -z "${VERCELMUSIC}" ]; then
+            echo "VERCELMUSIC is not set. Please set the secret in the repo settings." && exit 1
+          fi
           vercel whoami --token "$VERCELMUSIC" || (echo "VERCELMUSIC token invalid" && exit 1)
 
       - name: Deploy to Vercel
-        env:
-          VERCELMUSIC: ${{ secrets.VERCELMUSIC }}
         run: |
           if [ -z "$VERCELMUSIC" ]; then
             echo "VERCELMUSIC is not set. Please store it in repo secrets (Repository Settings -> Secrets)." && exit 1
