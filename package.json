@@ -7,8 +7,9 @@
         "build": "next build",
           "start": "next start",
             "lint": "next lint",
+    "audit": "npm audit --summary",
               "export": "next export"
-              }
+              },
   "dependencies": {
     "@azure/msal-browser": "^3.11.0",
     "@emotion/cache": "^11.11.0",

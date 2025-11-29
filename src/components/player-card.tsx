@@ -641,7 +641,7 @@ const PlayerCardInner = memo(function PlayerCardInner({
     const cover = mm.selectCover(activeTrack?.file.metadata?.common.picture)
     let url: string | undefined
     if (cover) {
-      url = URL.createObjectURL(new Blob([cover.data], { type: cover.format }))
+      url = URL.createObjectURL(new Blob([new Uint8Array(cover.data as any)], { type: cover.format }))
     }
     setCoverUrl(url)
 

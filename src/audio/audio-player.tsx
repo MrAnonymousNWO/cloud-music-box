@@ -165,7 +165,7 @@ const msSetPlayingTrack = (track: AudioTrack) => {
   const artwork = []
   if (cover) {
     const coverUrl = URL.createObjectURL(
-      new Blob([cover.data], { type: cover.format })
+      new Blob([new Uint8Array(cover.data as any)], { type: cover.format })
     )
     artwork.push({ src: coverUrl, sizes: "512x512", type: cover.format })
   } else {
